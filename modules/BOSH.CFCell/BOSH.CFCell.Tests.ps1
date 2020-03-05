@@ -1,8 +1,8 @@
 Remove-Module -Name BOSH.CFCell -ErrorAction Ignore
-Import-Module ./BOSH.CFCell.psm1
+Import-Module BOSH.CFCell
 
 Remove-Module -Name BOSH.Utils -ErrorAction Ignore
-Import-Module ../BOSH.Utils/BOSH.Utils.psm1
+Import-Module BOSH.Utils
 
 #this function does not exist on VMs without Windows Defender installed
 function Set-MpPreference() {
@@ -10,6 +10,17 @@ function Set-MpPreference() {
         [bool]$DisableBehaviorMonitoring,
         [bool]$OtherThing
     )
+}
+
+function verify-firewall() {
+    param(
+        [string] $profile,
+        [string] $expected
+    )
+
+    $firewall = (Get-NetFirewallProfile -Name $profile)
+    $result = "{0},{1},{2}" -f $profile,$firewall.DefaultInboundAction,$firewall.DefaultOutboundAction
+    $result | Should be $expected
 }
 
 Describe "Protect-CFCell" {
@@ -60,13 +71,13 @@ Describe "Protect-CFCell" {
 
     It "sets firewall rules" {
         Set-NetFirewallProfile -all -DefaultInboundAction Allow -DefaultOutboundAction Allow -AllowUnicastResponseToMulticast False -Enabled True
-        get-firewall "public" | Should be "public,Allow,Allow"
-        get-firewall "private" | Should be "private,Allow,Allow"
-        get-firewall "domain" | Should be "domain,Allow,Allow"
+        verify-firewall -profile "public" -expected "public,Allow,Allow"
+        verify-firewall -profile "private" -expected "private,Allow,Allow"
+        verify-firewall -profile "domain" -expected "domain,Allow,Allow"
         Protect-CFCell
-        get-firewall "public" | Should be "public,Block,Allow"
-        get-firewall "private" | Should be "private,Block,Allow"
-        get-firewall "domain" | Should be "domain,Block,Allow"
+        verify-firewall -profile "public" -expected "public,Block,Allow"
+        verify-firewall -profile "private" -expected "private,Block,Allow"
+        verify-firewall -profile "domain" -expected "domain,Block,Allow"
     }
 
     It "sets all Windows Defender `disable` settings to true" {
