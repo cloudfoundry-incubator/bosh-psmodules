@@ -1,11 +1,11 @@
 Remove-Module -Name BOSH.Sysprep -ErrorAction Ignore
-Import-Module ./BOSH.Sysprep.psm1
+Import-Module BOSH.Sysprep
 
 #We remove WinRM as it imports BOSH.Utils
 Remove-Module -Name BOSH.WinRM -ErrorAction Ignore
 
 Remove-Module -Name BOSH.Utils -ErrorAction Ignore
-Import-Module ../BOSH.Utils/BOSH.Utils.psm1
+Import-Module BOSH.Utils
 
 
 function New-TempDir

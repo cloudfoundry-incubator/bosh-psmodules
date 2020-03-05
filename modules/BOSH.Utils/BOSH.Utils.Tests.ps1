@@ -4,9 +4,9 @@ Remove-Module -Name BOSH.CFCell -ErrorAction Ignore
 Remove-Module -Name BOSH.AutoLogon -ErrorAction Ignore
 
 Remove-Module -Name BOSH.Utils -ErrorAction Ignore
-Import-Module ./BOSH.Utils.psm1
+Import-Module BOSH.Utils
 Remove-Module -Name AbsolutePathChroot -ErrorAction Ignore
-Import-Module ./AbsolutePathChroot.psm1
+Import-Module AbsolutePathChroot
 
 
 #As of now, this function only supports DWords and Strings.

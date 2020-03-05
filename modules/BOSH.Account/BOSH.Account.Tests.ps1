@@ -1,8 +1,8 @@
 Remove-Module -Name BOSH.Account -ErrorAction Ignore
-Import-Module ./BOSH.Account.psm1
+Import-Module BOSH.Account
 
 Remove-Module -Name BOSH.Utils -ErrorAction Ignore
-Import-Module ../BOSH.Utils/BOSH.Utils.psm1
+Import-Module BOSH.Utils
 
 Describe "Account" {
 

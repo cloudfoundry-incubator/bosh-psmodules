@@ -1,5 +1,5 @@
 Remove-Module -Name BOSH.SSH -ErrorAction Ignore
-Import-Module ./BOSH.SSH.psm1
+Import-Module BOSH.SSH
 
 function Get-FileEncoding {
     [CmdletBinding()]

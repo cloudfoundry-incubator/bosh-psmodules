@@ -1,5 +1,25 @@
 Remove-Module -Name BOSH.Registry -ErrorAction Ignore
-Import-Module ./BOSH.Registry.psm1
+Import-Module BOSH.Registry
+
+#function Invoke-LGPO-Build-Pol-From-Text {
+#    param(
+#        [Parameter(Mandatory=$True)]
+#        [String]
+#        $LGPOTextReadPath,
+#
+#        [Parameter(Mandatory=$True)]
+#        [String]
+#        $RegistryPolWritePath
+#    )
+#}
+#
+#function Invoke-LGPO-Apply-Policies {
+#    param(
+#        [Parameter(Mandatory=$True)]
+#        [String]
+#        $RegistryPolPath
+#    )
+#}
 
 Describe "BOSH.Registry" {
     BeforeEach {

@@ -8,7 +8,9 @@
     PowerShellVersion = '4.0'
     FunctionsToExport = @(
         'Set-RegistryProperty',
-        'Set-InternetExplorerRegistries'
+        'Set-InternetExplorerRegistries',
+        'Invoke-LGPO-Build-Pol-From-Text',
+        'Invoke-LGPO-Apply-Policies'
     )
     CmdletsToExport = @()
     VariablesToExport = @()

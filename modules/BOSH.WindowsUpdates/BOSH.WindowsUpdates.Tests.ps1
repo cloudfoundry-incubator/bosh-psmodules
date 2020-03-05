@@ -1,8 +1,8 @@
 Remove-Module -Name BOSH.WindowsUpdates -ErrorAction Ignore
-Import-Module ./BOSH.WindowsUpdates.psm1
+Import-Module BOSH.WindowsUpdates
 
 Remove-Module -Name BOSH.Utils -ErrorAction Ignore
-Import-Module ../BOSH.Utils/BOSH.Utils.psm1
+Import-Module BOSH.Utils
 
 Describe "Disable-AutomaticUpdates" {
 

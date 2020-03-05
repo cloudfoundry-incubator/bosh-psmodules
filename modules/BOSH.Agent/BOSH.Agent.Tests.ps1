@@ -1,8 +1,8 @@
 Remove-Module -Name BOSH.Agent -ErrorAction Ignore
-Import-Module ./BOSH.Agent.psm1
+Import-Module BOSH.Agent
 
 Remove-Module -Name BOSH.Utils -ErrorAction Ignore
-Import-Module ../BOSH.Utils/BOSH.Utils.psm1
+Import-Module BOSH.Utils
 
 function New-TempDir {
     $parent = [System.IO.Path]::GetTempPath()
